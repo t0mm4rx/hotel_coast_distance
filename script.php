@@ -1,8 +1,8 @@
 <?php
 error_reporting(0);
 
-const ZOOM_LEVEL = 19;
-const IMAGE_SIZE = 256;
+const ZOOM_LEVEL = 18.5;
+const PIXELS_THRESHOLD = 1000;
 
 function print_log($x)
 {
@@ -23,21 +23,33 @@ function download_image($coords, $zoom)
     $tile = coords_to_tile($coords, $zoom);
     $url = "https://tile.openstreetmap.bzh/oc/{$zoom}/{$tile[0]}/{$tile[1]}.png";
     print_log("Downloading {$url}");
-
-    $img_content = file_get_contents($url);
-    if ($img_content == "")
+    $img = imagecreatefrompng($url);
+    if (!$img)
     {
         print_log("Error while dowloading the tile!");
         return false;
     }
-    // Uncomment to save the image downloaded 
-    // file_put_contents("buffer.png", $img_content);
-    return imagecreatefromstring($img_content);
+    return $img;
+}
+
+function is_pixel_blue($color)
+{
+    return ($color["blue"] > 210 && $color["red"] < 180 && $color["green"] < 180);
 }
 
 function is_sea_on_image($img)
 {
-    var_dump(imagecolorat($img, 0, 0));
+    $blue_count = 0;
+    for ($x = 0; $x < imagesx($img); $x++)
+    {
+        for ($y = 0; $y < imagesy($img); $y++)
+        {
+            $rgb = imagecolorat($img, $x, $y);
+            $color = imagecolorsforindex($img, $rgb);
+            $blue_count += is_pixel_blue($color);
+        }
+    }
+    return ($blue_count >= PIXELS_THRESHOLD);
 }
 
 /* -1 ==> error
@@ -48,9 +60,6 @@ function is_near_coast($coords)
     $img = download_image($coords, ZOOM_LEVEL);
     if (!$img)
         return -1;
-    is_sea_on_image($img);
+    imagepng($img, "buffer.png");
+    return is_sea_on_image($img);
 }
-
-//$coords = [49.339975, -0.621558];
-$coords = [49.340361, -0.621746];
-print(is_near_coast($coords));
