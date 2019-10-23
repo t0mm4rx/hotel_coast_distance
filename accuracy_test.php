@@ -1,6 +1,6 @@
 <?php
 
-include_once("script.php");
+include_once("is_near_sea.php");
 
 $data = json_decode(file_get_contents("./data/hotels_tests.json"));
 
