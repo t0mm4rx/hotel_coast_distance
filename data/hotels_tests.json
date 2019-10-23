@@ -2,19 +2,56 @@
     {
         "lat": 49.339975,
         "lon": -0.621558,
-        "name": "Logis Hôtel de Normandie",
-        "distance_gmaps": 45
+        "distance": 45
     },
     {
         "lat": 49.338918,
         "lon": -0.622042,
-        "name": "La Villa Graziella",
-        "distance_gmaps": 175
+        "distance": 175
     },
     {
         "lat": 49.339918,
         "lon": -0.625068,
-        "name": "Villa Espérance",
-        "distance_gmaps": 70
+        "distance": 70
+    },
+    {
+        "lat": 45.039382,
+        "lon": -1.197917,
+        "distance": 3
+    },
+    {
+        "lat": 45.038728,
+        "lon": -1.197558,
+        "distance": 30
+    },
+    {
+        "lat": 45.038692,
+        "lon": -1.197177,
+        "distance": 60
+    },
+    {
+        "lat": 41.253482,
+        "lon": 1.1898562,
+        "distance": 250
+    },
+    {
+        "lat": 41.256751,
+        "lon": 1.912042,
+        "distance": 70
+    },
+    {
+        "lat": 41.257057,
+        "lon": 1.915033,
+        "distance": 8
+    },
+    {
+        "lat": 41.257354,
+        "lon": 1.915443,
+        "distance": 30
+    },
+    {
+        "lat": 43.152201,
+        "lon": 6.485053,
+        "distance": 13
     }
 ]
