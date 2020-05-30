@@ -1,6 +1,6 @@
 <?php
 
-const ZOOM_LEVEL = 18;
+const ZOOM_LEVEL = 17;
 const PIXELS_THRESHOLD = 1000;
 
 function print_log($x)
